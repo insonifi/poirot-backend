@@ -13,7 +13,7 @@ import "net/http"
 func queryDatabase(query string) map[string] interface{} {
 	var rowsSlice []map[string]string
   result := make(map[string] interface {})
-  pgurl := fmt.Sprintf("%s/%s?application_name=backend", os.Getenv("OPENSHIFT_POSTGRESQL_DB_URL"), os.Getenv("PGDATABASE"))
+  pgurl := fmt.Sprintf("%s/%s?sslmode=disable&application_name=backend", os.Getenv("OPENSHIFT_POSTGRESQL_DB_URL"), os.Getenv("PGDATABASE"))
   db, err := sql.Open("postgres", pgurl)
 	if err != nil {
 		log.Print(err)
