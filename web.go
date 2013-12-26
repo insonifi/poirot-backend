@@ -76,7 +76,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
   enc := json.NewEncoder(w)
   q := r.URL.Query()
   log.Print("[http] ", r.URL)
-  
+  w.Header().Set("Access-Control-Allow-Origin", "*")
   if r.URL.Path == "/tasks/"{
     if len(q) == 0 {
       enc.Encode(queryDatabase("SELECT id, status FROM tasks"))
